@@ -1,8 +1,10 @@
+<?php include_once "./api/base.php"; ?>
 <?php
 $dsn = "mysql:host=localhost;charset=utf8;dbname=db14";
 $pdo = new PDO($dsn, 'root', '');
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0040)http://127.0.0.1/test/exercise/collage/? -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -52,34 +54,36 @@ $pdo = new PDO($dsn, 'root', '');
 
             <div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
                 <!--右邊-->
-                <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('?do=login')">管理登入</button>
+                <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;"
+                    onclick="lo('?do=login')">管理登入</button>
                 <div style="width:89%; height:480px;" class="dbor">
                     <span class="t botli">校園映象區</span>
                     <script>
-                        var nowpage = 0,
-                            num = 0;
+                    var nowpage = 0,
+                        num = 0;
 
-                        function pp(x) {
-                            var s, t;
-                            if (x == 1 && nowpage - 1 >= 0) {
-                                nowpage--;
-                            }
-                            if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) {
-                                nowpage++;
-                            }
-                            $(".im").hide()
-                            for (s = 0; s <= 2; s++) {
-                                t = s * 1 + nowpage * 1;
-                                $("#ssaa" + t).show()
-                            }
+                    function pp(x) {
+                        var s, t;
+                        if (x == 1 && nowpage - 1 >= 0) {
+                            nowpage--;
                         }
-                        pp(1)
+                        if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) {
+                            nowpage++;
+                        }
+                        $(".im").hide()
+                        for (s = 0; s <= 2; s++) {
+                            t = s * 1 + nowpage * 1;
+                            $("#ssaa" + t).show()
+                        }
+                    }
+                    pp(1)
                     </script>
                 </div>
             </div>
         </div>
         <div style="clear:both;"></div>
-        <div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
+        <div
+            style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
             <span class="t" style="line-height:123px;"></span>
         </div>
     </div>

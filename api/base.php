@@ -14,7 +14,7 @@ class DB
 
     public function all(...$arg)
     {
-        $sql = "select * from `$this->table`";
+        $sql = "select * from  `$this->table`";
 
         if (isset($arg[0])) {
             if (is_array($arg[0])) {
@@ -28,6 +28,7 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
+        //echo $sql;
 
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -41,6 +42,7 @@ class DB
         } else {
             $sql .= " where `id`='$arg'";
         }
+        //echo $sql;
 
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
@@ -48,12 +50,15 @@ class DB
     public function save($arg)
     {
         if (isset($arg['id'])) {
+            //update
             $tmp = $this->a2s($arg);
             $sql = "update `$this->table` set " . join(",", $tmp);
             $sql .= " where `id`='{$arg['id']}'";
         } else {
+            //insert
             $keys = array_keys($arg);
-            $sql = "insert into `$this->table` (`" . join("`,`", $keys) . "`) value('" . join("','", $arg) . "')";
+            $sql = "insert into `$this->table` (`" . join("`,`", $keys) . "`) 
+                   values('" . join("','", $arg) . "')";
         }
 
         return $this->pdo->exec($sql);
@@ -61,8 +66,7 @@ class DB
 
     public function del($arg)
     {
-        $sql = "delete from `$this->table`";
-
+        $sql = "delete from `$this->table` ";
         if (is_array($arg)) {
             $tmp = $this->a2s($arg);
             $sql .= " where " . join(" && ", $tmp);
@@ -73,10 +77,9 @@ class DB
         return $this->pdo->exec($sql);
     }
 
-
     public function count(...$arg)
     {
-        $sql = "select count(*) from `$this->table`";
+        $sql = "select count(*) from  `$this->table`";
 
         if (isset($arg[0])) {
             if (is_array($arg[0])) {
@@ -90,9 +93,11 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
+        //echo $sql;
 
         return $this->pdo->query($sql)->fetchColumn();
     }
+
 
     protected function a2s($array)
     {
@@ -100,9 +105,11 @@ class DB
         foreach ($array as $key => $value) {
             $tmp[] = "`$key`='$value'";
         }
+
         return $tmp;
     }
 }
+
 
 
 function q($sql)
@@ -125,4 +132,6 @@ function dd($array)
 }
 
 
+
 $Title = new DB('title');
+$Ad = new DB('ad');

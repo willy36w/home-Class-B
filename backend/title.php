@@ -11,28 +11,26 @@
                     <td></td>
                 </tr>
                 <?php
-                $dsn = "mysql:host=localhost;charset=utf8;dbname=db14";
-                $pdo = new PDO($dsn, 'root', '');
-                $sql = "select * from title";
-                $rows = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+                $rows = $Title->all();
                 foreach ($rows as $row) {
                 ?>
-                    <tr class="cent">
-                        <td width="45%">
-                            <img src="./images/<?= $row['img']; ?>" style="width:300px;height:30xp;">
-                        </td>
-                        <td width="23%">
-                            <input type="text" name="text[]" id="text" value="<?= $row['text']; ?>">
-                        </td>
-                        <td width="7%">
-                            <input type="radio" name="sh" value="<?= $row['id']; ?>">
-                        </td>
-                        <td width="7%">
-                            <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
-                        </td>
-                        <td></td>
-                        <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
-                    </tr>
+                <tr class="cent">
+                    <td width="45%">
+                        <img src="./images/<?= $row['img']; ?>" style="width:300px;height:30px;">
+                    </td>
+                    <td width="23%">
+                        <input type="text" name="text[]" id="text" value="<?= $row['text']; ?>">
+                    </td>
+                    <td width="7%">
+                        <input type="radio" name="sh" value="<?= $row['id']; ?>"
+                            <?= ($row['sh'] == 1) ? "checked" : ""; ?>>
+                    </td>
+                    <td width="7%">
+                        <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
+                    </td>
+                    <td></td>
+                    <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
+                </tr>
                 <?php
                 }
                 ?>
@@ -41,8 +39,12 @@
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>
-                    <td width="200px"><input type="button" onclick="op('#cover','#cvr','./modals/title.php')" value="新增網站標題圖片"></td>
-                    <td class="cent"><input type="submit" value="修改確定"><input type="reset" value="重置">
+                    <td width="200px"><input type="button" onclick="op('#cover','#cvr','./modals/title.php')"
+                            value="新增網站標題圖片"></td>
+                    <td class="cent">
+                        <input type="hidden" name="table" value="<?= $do ?>">
+                        <input type="submit" value="修改確定">
+                        <input type="reset" value="重置">
                     </td>
                 </tr>
             </tbody>
